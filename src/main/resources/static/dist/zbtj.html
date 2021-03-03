@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加指标</title>
+    <link rel="stylesheet" href="css/layui.css" media="all">
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>添加指标</legend>
+</fieldset>
+<div>
+    <form class="layui-form" action="">
+        <!-- 考核名称 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="er_name" class="layui-input">
+            </div>
+        </div>
+        <!-- 权重 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">权重</label>
+            <div class="layui-input-inline">
+                <input type="text" name="weight" class="layui-input">
+            </div>
+        </div>
+        <!-- 考核目标 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">考核目标</label>
+            <div class="layui-input-block">
+               <textarea name="khmb" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <!-- 考核细则 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">考核细则</label>
+            <div class="layui-input-block">
+                <textarea name="khxz" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+<script src="layui.js"></script>
+</html>

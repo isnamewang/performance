@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 后台管理员</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <link rel="stylesheet" href="style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <!-- 学科专业搜索 -->
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 88px">学科专业</label>
+                    <div class="layui-input-block" style="margin-left: 122px">
+                        <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 搜素 -->
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <!-- 添加按钮-->
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-admin" id="add">添加</button>
+            </div>
+            <table class="layui-hide" id="test"></table>
+        </div>
+    </div>
+</div>
+<div id="Add_major" hidden>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>添加课程</legend>
+    </fieldset>
+    <div>
+        <form class="layui-form" style="margin-left: 140px" action="">
+            <!-- 课程名称 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="major_name" id="major_name" class="layui-input">
+                </div>
+            </div>
+            <!-- 开课学院 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">开课学院</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="college" id="college"  class="layui-input">
+                </div>
+            </div>
+            <!-- 课程类别 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程类别</label>
+                <div class="layui-input-inline">
+                   <select name="major_type">
+                       <option value="">请选择课程类别</option>
+                       <option value="0">必修课程</option>
+                       <option value="1">公共选修</option>
+                       <option value="2">通识教育选修课程</option>
+                       <option value="3">通修课程</option>
+                       <option value="4">选修课程</option>
+                   </select>
+                </div>
+            </div>
+            <!-- 课时 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">课时</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="hour" id="hour"  class="layui-input">
+                </div>
+            </div>
+            <!-- 教师 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">教师</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="teacher_name" id="teacher_name" class="layui-input">
+                </div>
+            </div>
+            <!-- 学年 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">学年</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input" id="year_range" name="year_range" placeholder=" - ">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" id="up" lay-event="up">提交</a>
+    <a class="layui-btn layui-btn-xs" id="edit" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger  layui-btn-xs"  id="del" lay-event="del">删除</a>
+</script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui.js"></script>
+<script>
+    layui.use(['element','form'],function (){
+        var element = layui.element;
+        var form = layui.form;
+    });
+    layui.use('laydate',function (){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#year_range'
+            ,type: 'year'
+            ,range: true
+        });
+    });
+    var $= layui.jquery;
+    $("#add").click(function (){
+        layer.open({
+            type:1
+            ,area:['50%','85%']
+            ,btn:['确定','取消']
+            ,content:$("#Add_major")
+            ,yes:function (){
+
+            }
+        })
+    })
+</script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:''
+            //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                 {field:'major_name', title: '课程名称'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'college', title: '开课学院', sort: true}
+                ,{field:'major_type', title: '课程类别'}
+                ,{field:'hour', title: '课时'}
+                ,{field:'teacher_name', title: '教师'} //单元格内容水平居中
+                ,{field:'year_range', title: '学年'} //单元格内容水平居中
+                ,{field:'status', title: '状态',
+                        templet:function (d){
+                            if(d.status == "0"){
+                                return '<span style="color: #FF5722;">'+"未审核"+'</span>'
+                            }if(d.status =="1"){
+                                return '<span style="color: #009688;">'+"待审核"+'</span>'
+                            }if(d.status == "2"){
+                                return '<span style="color: #FFB800;">'+"已审核"+'</span>'
+                            }
+                        }}
+                ,{field:'fixed', title: '操作', width:'170',toolbar:'#barDemo'}
+            ]]
+            ,data:[{
+                "major_name":"UML"
+                ,"college":"软件学院"
+                ,"major_type":"通识教育课程"
+                ,"hour":"54"
+                ,"teacher_name":"王毅"
+                ,"year_range":"2019-2020"
+                ,"status":"2"
+            }]
+            ,page: true
+        });
+    });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考核指标</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/layui.css"  media="all">
+    <style>
+        .layui-table-cell {
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>考核指标</legend>
+</fieldset>
+<div class="layui-collapse">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title ">职业道德</h2>
+        <div class="layui-colla-content ">
+            <table class="layui-hide" id="zydd"></table>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">知识水平</h2>
+        <div class="layui-colla-content ">
+            <table class="layui-hide" id="zzsp"></table>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">工作量</h2>
+        <div class="layui-colla-content ">
+            <table class="layui-hide" id="ktjx"></table>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">教学设计</h2>
+        <div class="layui-colla-content">
+            <table class="layui-hide" id="jxsj"></table>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">著作与论文</h2>
+        <div class="layui-colla-content ">
+            <table class="layui-hide" id="zzlw"></table>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">健康情况</h2>
+        <div class="layui-colla-content ">
+            <table class="layui-hide" id="jkqk"></table>
+        </div>
+    </div>
+</div>
+
+</table>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui.js" charset="utf-8"></script>
+<script>
+layui.use('element',function (){
+    var element = layui.element;
+});
+layui.use('table',function (){
+    var table=layui.table;
+    table.render({
+        elem: '#zydd'
+        ,height:330
+        ,cols: [[
+            {field:'zb',title:'指标'}
+            ,{field:'zbms',title:'指标描述'}
+            ,{field:'zbpf',title:'指标评分'}
+        ]]
+        ,data:[
+            {"zb":"品德言行"
+              ,"zbms":"1  爱岗敬业，治学严谨</br>" +
+                  "2  格尽职守,无私奉献</br>"+
+                  "3  与时俱进，无私奉献</br>"+
+                  "4  教书育人，注重学生道德和素质的培养"
+                ,"zbpf":"优秀 8-10分</br>"+
+                    "良好5-7分</br>"+
+                    "合格3-5分</br>"
+            }
+            ,{"zb":"政治素养"
+                ,"zbms":"1、认真学邓小平理论，“三个代表”重要思想，有中国特色社会主义和科学发展观，坚持四项基本原则；</br>" +
+                    "2、自觉遵守《中华人民共和国宪法》、《教育法》、《义务教育法》、《教师法》、《未成年人保护法》、《教师职业道德规范》等法律、法规；</br>" +
+                    "3、熟悉教师的权利和义务，忠诚于党和人民的教育事业；</br>" +
+                    "4、认真贯彻执行党的教育路线、方针、政策。"
+                ,"zbpf":"优秀 8-10分</br>"+
+                    "良好5-7分</br>"+
+                    "合格3-5分</br>"
+            }
+            ,{"zb":"工作态度"
+                ,"zbms":"1、教学认真，科研负责，有严谨的科学态度和高度的责任心。</br>" +
+                    "2、脚踏实地，勇于创新，勇于负责。</br>" +
+                    "3、团结协作，有较强的团队精神和整体观念。"
+                ,"zbpf":"优秀 8-10分</br>"+
+                    "良好5-7分</br>"+
+                    "合格3-5分</br>"
+            }
+            ]
+    });
+    table.render({
+        elem: '#zzsp'
+        ,height:330
+        ,cols: [[
+            {field:'zb',title:'指标'}
+            ,{field:'zbms',title:'指标描述'}
+            ,{field:'zbpf',title:'指标评分'}
+        ]]
+        ,data:[
+            {
+                "zb": "学科专业水平"
+                , "zbms": "1、专业基础牢固，始终能跟踪和掌握本学科的前沿工作。</br>" +
+                    "2、对本学科内的各种问题和成果水平能做出权威性判断。</br>" +
+                    "3、富有创新精神，对本学科的发展能起到一定的推动作用。"
+                , "zbpf": "静态 8-10分</br>" +
+                    "一般5-7分</br>" +
+                    "合格3-5分"
+            }
+        ]
+    });
+});
+
+
+
+
+</script>
+
+</body>
+</html>

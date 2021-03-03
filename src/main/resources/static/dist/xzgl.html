@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>薪资管理</title>
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <link rel="stylesheet" href="style/admin.css" media="all">
+</head>
+<body>
+<div class="" style="background-color: #9F9F9F;height: 818px;">
+    <div class="layui-card"style="margin-left: 120px;margin-right: 120px;height: 818px;">
+        <div class="layui-card-header">薪资管理</div>
+        <div class="layui-card">
+            <div class="layui-card-header">&nbsp;&nbsp;&nbsp;&nbsp;基础固定薪资</div>
+            <div class="layui-card-body" style="padding: 15px;margin: 57px;margin-left: 36px;">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <!-- 基本薪资 -->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">基本薪资</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="jbxz"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <!--教龄薪资 -->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">教龄薪资</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="jlxz"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <!-- 绩效薪资 -->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">绩效薪资</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="jxxz"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <!-- 科研费-->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">科研费</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="kyf"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <!--课时费 -->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">课时费</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="ksf"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                        <!-- 五险一金+税-->
+                        <div class="layui-inline">
+                            <label class="layui-form-label">五险一金</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="wxyj"  class="layui-input" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">&nbsp;&nbsp;&nbsp;&nbsp;薪资查看</div>
+            <div class="layui-card-body">
+                <table class="layui-hide" id="pay_look" lay-filter="pay_look"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="pay_detail" hidden>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>薪资详情</legend>
+    </fieldset>
+    <div>
+        <form class="layui-form" style="margin-left: 140px" action="">
+            <!-- 基本薪资 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">基本薪资</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_base" id="pay_base" class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 教龄薪资 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">教龄薪资</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_year" id="pay_year"  class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 绩效薪资 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">绩效薪资</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_performance" id="pay_performance"  class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 科研费 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">科研费</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_research" id="pay_research"  class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 课时费 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">课时费</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_hour" id="pay_hour" class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 五险一金 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">五险一金</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="five_one" id="five_one" class="layui-input" disabled>
+                </div>
+            </div>
+            <!-- 高温补贴 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">高温补贴</label>
+                <div class="layui-input-inline">
+                    <input type="text"   name="high_temperature" id="high_temperature"class="layui-input" disabled >
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="look">详情</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui.js"></script>
+<script>
+    layui.use(['element','form'],function (){
+        var element = layui.element;
+        var form = layui.form;
+    });
+    var $= layui.jquery;
+    /*
+    $("#add").click(function (){
+        layer.open({
+            type:1
+            ,area:['50%','85%']
+            ,btn:['确定','取消']
+            ,content:$("#Add_paper")
+            ,yes:function (){
+
+            }
+        })
+    })*/
+
+</script>
+<script>
+    layui.use('table',function (){
+        var table = layui.table;
+        table.render({
+            elem:'#pay_look'
+            ,url:''
+            ,cols:[[
+                {field:'username',title:'姓名'}
+                ,{field: 'year',title: '年份',sort: true}
+                ,{field: 'month',title: '月份',sort:true}
+                ,{field: 'total_money',title: '总工资'}
+                ,{field:'fixed', title: '操作', width:'170',toolbar:'#barDemo'}
+            ]]
+            ,data:[{
+                "username":"王欢"
+                ,"year": "2019"
+                ,"month": "7"
+                ,"total_money": "200000"
+            }]
+        });
+        table.on('tool(pay_look)',function (obj){
+           var data = obj.data;//获取当前行数据
+           var layEvent = obj.event;
+           if(layEvent === 'look'){
+               layer.open({
+                   type: 1
+                   , area: ['50%', '85%']
+                   , btn: ['确定', '取消']
+                   , content: $("#pay_detail")
+                   , yes: function () {
+                   }
+                   ,success:function (){
+                      /* var pay_base=document.getElementById('pay_base');
+                       pay_base.value=data.total_money;*/
+                       $("#pay_base").val(data.total_money);
+                   }
+               });
+           }
+        });
+    })
+</script>
+</html>

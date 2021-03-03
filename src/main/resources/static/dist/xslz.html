@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 后台管理员</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="css/layui.css" media="all">
+    <link rel="stylesheet" href="style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <!-- 学术论著编号搜索 -->
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 88px">学术论著</label>
+                    <div class="layui-input-block" style="margin-left: 122px">
+                        <input type="text" name="" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <!-- 搜素 -->
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+            <!-- 添加按钮-->
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-admin" id="add">添加</button>
+            </div>
+            <table class="layui-hide" id="test"></table>
+        </div>
+    </div>
+</div>
+<div id="Add_book" hidden>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>添加著作</legend>
+    </fieldset>
+    <div>
+        <form class="layui-form" style="margin-left: 140px" action="">
+            <!-- 著作编号 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">著作编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="book_number" id="book_number" class="layui-input">
+                </div>
+            </div>
+            <!-- 著作名称 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">著作名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="book_name" id="book_name"  class="layui-input">
+                </div>
+            </div>
+            <!-- 作者 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">作者</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="author" id="author" class="layui-input">
+                </div>
+            </div>
+            <!-- 出版社 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">出版社</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="publish_name" id="publish_name"  class="layui-input">
+                </div>
+            </div>
+            <!-- 出版日期 -->
+            <div class="layui-form-item">
+                <label class="layui-form-label">出版日期</label>
+                <div class="layui-input-inline">
+                    <input type="text"   name="publish_time" id="publish_time"class="layui-input" placeholder="yyyy-MM-dd">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" id="up" lay-event="up">提交</a>
+    <a class="layui-btn layui-btn-xs" id="edit" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger  layui-btn-xs"  id="del" lay-event="del">删除</a>
+</script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui.js"></script>
+<script>
+    layui.use(['element','form'],function (){
+        var element = layui.element;
+        var form = layui.form;
+    });
+    layui.use('laydate',function (){
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#publish_time'
+        });
+    });
+    var $= layui.jquery;
+    $("#add").click(function (){
+        layer.open({
+            type:1
+            ,area:['50%','75%']
+            ,btn:['确定','取消']
+            ,content:$("#Add_book")
+            ,yes:function (){
+
+            }
+        })
+    })
+</script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:''
+            //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'book_number', title: '著作编号'}
+                ,{field:'book_name', title: '著作名称'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'author', title: '作者'}
+                ,{field:'publish_name', title: '出版社名称'}
+                ,{field:'publish_time', title: '出版日期'}
+                ,{field:'status', title: '状态',
+                    templet:function (d){
+                            if(d.status == "0"){
+                                return '<span style="color: #FF5722;">'+"未审核"+'</span>'
+                            }if(d.status =="1"){
+                                return '<span style="color: #009688;">'+"待审核"+'</span>'
+                            }if(d.status == "2"){
+                                return '<span style="color: #FFB800;">'+"已审核"+'</span>'
+                            }
+                        }}
+                ,{field:'fixed', title: '操作', toolbar:'#barDemo'}
+            ]]
+            ,data:[{
+                "book_number": 561231
+                ,"author":"王欢"
+                ,"book_name":"儿童精神分析"
+                ,"publish_name":"中国农业出版社"
+                ,"publish_time":"2018"
+                ,"status":"2"
+            }]
+            ,page: true
+        });
+    });
+</script>
+</body>
+</html>
+

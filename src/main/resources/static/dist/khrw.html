@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>考核任务</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/layui.css"  media="all">
+</head>
+<body>
+
+<table id="khrw" class="layui-hide" ></table>
+</body>
+<script type="text/html" id="bardemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-even="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-even="put">提交</a>
+</script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="layui.js" charset="utf-8"></script>
+<script>
+    layui.use('table',function(){
+        var table = layui.table;
+        table.render({
+            elem:'#khrw'
+            ,cols:[[
+                {field:'id',title:"ID",sort:true}
+                ,{field: "khlx",title: "考核类型",}
+                ,{field: "khms",title: "考核描述"}
+                ,{field: "kssj",title: "开始时间"}
+                ,{field: "jssj",title: "结束时间"}
+                ,{field: "khzt",title: "考核状态"}
+                ,{field: 'cz',title: "操作",toolbar:'#bardemo'}
+            ]]
+            ,data:[
+                {}
+            ]
+            ,even:true
+            ,page:true
+            ,limit:10
+        })
+
+
+    })
+
+
+</script>
+</html>
